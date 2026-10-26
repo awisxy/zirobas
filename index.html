@@ -890,11 +890,12 @@
 
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="nav-logo">СЖ</div>
+        <div class="nav-logo"><img src="logo.png" alt="СЖ" style="height: 35px; border-radius: 50%; vertical-align: middle; margin-right: 8px; mix-blend-mode: lighten;">СЖ</div>
         <ul class="nav-links">
             <li><a href="#home">Главная</a></li>
             <li><a href="#about">Обо мне</a></li>
             <li><a href="#skills">Скиллы</a></li>
+            <li><a href="#bmi">ИМТ</a></li>
             <li><a href="#gallery">Галерея</a></li>
             <li><a href="#game">Invoker</a></li>
             <li><a href="#contact">Контакт</a></li>
@@ -904,6 +905,7 @@
     <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-bg-grid"></div>
+        <img src="logo.png" alt="Серега Жиробас" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--crimson); box-shadow: 0 0 40px rgba(195,7,63,0.4); margin-bottom: 20px; opacity: 0; animation: fadeInUp 1s ease 2.5s forwards; object-fit: cover; background: var(--dark-bg); mix-blend-mode: lighten;">
         <div class="hero-subtitle-top">★ ЛЕГЕНДА ИНТЕРНЕТА ★</div>
         <h1 class="hero-title glitch-wrapper" data-text="СЕРЕГА ЖИРОБАС">
             <div class="line"><span>СЕРЕГА</span></div>
@@ -958,13 +960,13 @@
                 </div>
                 <div class="stat-card">
                     <div class="inner">
-                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-number" data-target="1488">0</div>
                         <div class="stat-label">% Жиробасности</div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="inner">
-                        <div class="stat-number" data-target="1337">0</div>
+                        <div class="stat-number" data-target="2">0</div>
                         <div class="stat-label">Побед подряд</div>
                     </div>
                 </div>
@@ -988,8 +990,8 @@
 
             <div class="skill-bar">
                 <div class="skill-info">
-                    <span class="skill-name">ЖИРОБАСНОСТЬ</span>
-                    <span class="skill-percent">100%</span>
+                    <span class="skill-name">ЖИР</span>
+                    <span class="skill-percent">1488%</span>
                 </div>
                 <div class="skill-track">
                     <div class="skill-fill fill-1" data-width="100"></div>
@@ -998,43 +1000,45 @@
 
             <div class="skill-bar">
                 <div class="skill-info">
-                    <span class="skill-name">БАЗИРОВАННОСТЬ</span>
-                    <span class="skill-percent">97%</span>
+                    <span class="skill-name">ТУПОСТЬ</span>
+                    <span class="skill-percent">100%</span>
                 </div>
                 <div class="skill-track">
-                    <div class="skill-fill fill-2" data-width="97"></div>
+                    <div class="skill-fill fill-2" data-width="100"></div>
                 </div>
             </div>
 
             <div class="skill-bar">
                 <div class="skill-info">
-                    <span class="skill-name">СИЛА ВОЛИ</span>
-                    <span class="skill-percent">85%</span>
+                    <span class="skill-name">ДОТА</span>
+                    <span class="skill-percent">18%</span>
                 </div>
                 <div class="skill-track">
-                    <div class="skill-fill fill-3" data-width="85"></div>
+                    <div class="skill-fill fill-3" data-width="18"></div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="skill-bar">
-                <div class="skill-info">
-                    <span class="skill-name">АУРА ВЕЛИЧИЯ</span>
-                    <span class="skill-percent">92%</span>
-                </div>
-                <div class="skill-track">
-                    <div class="skill-fill fill-4" data-width="92"></div>
-                </div>
-            </div>
+    <div class="glow-line"></div>
 
-            <div class="skill-bar">
-                <div class="skill-info">
-                    <span class="skill-name">ХАРИЗМА</span>
-                    <span class="skill-percent">110%</span>
-                </div>
-                <div class="skill-track">
-                    <div class="skill-fill fill-5" data-width="110"></div>
-                </div>
+    <!-- BMI Calculator -->
+    <section id="bmi" style="min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+        <div class="section-title">// ПОЛЕЗНОЕ</div>
+        <h2 class="section-heading">Калькулятор <span style="color: var(--crimson);">Жиробасности</span></h2>
+        <p style="font-family: sans-serif; color: #555; margin-bottom: 40px; font-size: 0.95rem;">Узнай свой ИМТ — насколько ты близок к статусу Жиробаса</p>
+
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(195,7,63,0.15); border-radius: 20px; padding: 40px; max-width: 420px; width: 100%;">
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label style="font-family: sans-serif; font-size: 0.8rem; color: #666; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 8px;">Вес (кг)</label>
+                <input type="number" id="bmi-weight" placeholder="80" style="width: 100%; padding: 14px 18px; background: rgba(26,26,29,0.8); border: 1px solid var(--gray-mid); border-radius: 10px; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1.1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='#C3073F'" onblur="this.style.borderColor='#4E4E50'">
             </div>
+            <div style="margin-bottom: 25px; text-align: left;">
+                <label style="font-family: sans-serif; font-size: 0.8rem; color: #666; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 8px;">Рост (см)</label>
+                <input type="number" id="bmi-height" placeholder="175" style="width: 100%; padding: 14px 18px; background: rgba(26,26,29,0.8); border: 1px solid var(--gray-mid); border-radius: 10px; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1.1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='#C3073F'" onblur="this.style.borderColor='#4E4E50'">
+            </div>
+            <button onclick="calcBMI()" class="btn-neon" style="width: 100%; padding: 15px; font-size: 0.8rem; cursor: pointer;">РАССЧИТАТЬ</button>
+            <div id="bmi-result" style="margin-top: 25px; font-family: 'Orbitron', sans-serif; min-height: 80px;"></div>
         </div>
     </section>
 
@@ -1386,6 +1390,33 @@
             }
         `;
         document.head.appendChild(style);
+
+        // ============ BMI CALCULATOR ============
+        function calcBMI() {
+            const weight = parseFloat(document.getElementById('bmi-weight').value);
+            const height = parseFloat(document.getElementById('bmi-height').value);
+            const result = document.getElementById('bmi-result');
+
+            if (!weight || !height || weight <= 0 || height <= 0) {
+                result.innerHTML = '<span style="color: #C3073F; font-size: 0.9rem;">Введи вес и рост, жиробас!</span>';
+                return;
+            }
+
+            const bmi = weight / ((height / 100) ** 2);
+            let status, color, emoji;
+
+            if (bmi < 18.5) { status = 'ДИСТРОФИК'; color = '#4E4E50'; emoji = '🦴'; }
+            else if (bmi < 25) { status = 'НОРМИС'; color = '#6F2232'; emoji = '😐'; }
+            else if (bmi < 30) { status = 'ПУХЛЯШ'; color = '#950740'; emoji = '🍔'; }
+            else if (bmi < 35) { status = 'ЖИРОБАС'; color = '#C3073F'; emoji = '🔥'; }
+            else { status = 'МЕГА-ЖИРОБАС'; color = '#C3073F'; emoji = '👑🔥💀'; }
+
+            result.innerHTML = `
+                <div style="font-size: 2.5rem; color: ${color}; text-shadow: 0 0 20px ${color};">${bmi.toFixed(1)}</div>
+                <div style="font-size: 1rem; color: ${color}; margin-top: 5px;">${emoji} ${status} ${emoji}</div>
+                <div style="font-family: sans-serif; font-size: 0.75rem; color: #555; margin-top: 10px;">Уровень жиробасности: ${Math.min(Math.round(bmi * 3), 1488)}%</div>
+            `;
+        }
     </script>
 
 </body>
