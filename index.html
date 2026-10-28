@@ -161,6 +161,12 @@
             width: 100%;
         }
 
+        /* ============ PERFORMANCE MODE ============ */
+        .performance-toggle { position: fixed; right: 20px; bottom: 20px; z-index: 2000; padding: 10px 14px; border: 1px solid var(--crimson); border-radius: 8px; background: rgba(10,10,15,.9); color: var(--crimson); font: 700 .65rem 'Orbitron', sans-serif; letter-spacing: 1px; cursor: pointer; }
+        .performance-toggle.active { color: #fff; background: var(--crimson-dark); }
+        body.low-performance *, body.low-performance *::before, body.low-performance *::after { animation-duration: 0s !important; transition-duration: 0s !important; }
+        body.low-performance .floating-shapes, body.low-performance #particles-canvas, body.low-performance .cursor-trail, body.low-performance .noise { display: none !important; }
+
         /* ============ HERO SECTION ============ */
         .hero {
             position: relative;
@@ -902,6 +908,8 @@
         </ul>
     </nav>
 
+    <button class="performance-toggle" id="performance-toggle" type="button" aria-pressed="false">⚡ РЕЖИМ ДЛЯ СЛАБЫХ УСТРОЙСТВ</button>
+
     <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-bg-grid"></div>
@@ -1061,6 +1069,10 @@
                 <img class="gallery-bg" src="photo3.png" alt="Серега" style="width:100%;height:100%;object-fit:cover;">
                 <div class="overlay"><span class="overlay-text">ГЕНИЙ У ДОСКИ 👑</span></div>
             </div>
+            <div class="gallery-item">
+                <img class="gallery-bg" src="photo4.jpg" alt="Новое фото" style="width:100%;height:100%;object-fit:cover;">
+                <div class="overlay"><span class="overlay-text">НОВОЕ ФОТО</span></div>
+            </div>
         </div>
     </section>
 
@@ -1100,6 +1112,7 @@
         </div>
         <div class="magnetic-area">
             <a class="btn-neon" href="https://t.me/IT_DYTCH" target="_blank" style="text-decoration:none;">НАПИСАТЬ В TELEGRAM</a>
+            <button class="btn-neon" id="phone-contact" type="button" style="margin-top: 15px; border-color: var(--neon-green); color: var(--neon-green);">ПОЗВОНИТЬ</button>
         </div>
     </section>
 
@@ -1279,6 +1292,18 @@
         // Stagger skill bars
         document.querySelectorAll('.skill-bar').forEach((bar, i) => {
             bar.style.transitionDelay = i * 0.15 + 's';
+        });
+
+        // Lightweight mode; the phone number is never displayed.
+        const performanceToggle = document.getElementById('performance-toggle');
+        performanceToggle.addEventListener('click', () => {
+            const enabled = document.body.classList.toggle('low-performance');
+            performanceToggle.classList.toggle('active', enabled);
+            performanceToggle.setAttribute('aria-pressed', String(enabled));
+            performanceToggle.textContent = enabled ? '⚡ ЛЁГКИЙ РЕЖИМ ВКЛЮЧЁН' : '⚡ РЕЖИМ ДЛЯ СЛАБЫХ УСТРОЙСТВ';
+        });
+        document.getElementById('phone-contact').addEventListener('click', () => {
+            window.location.href = 'tel:+79955618062';
         });
 
         // ============ NUMBER ANIMATION ============
