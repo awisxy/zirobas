@@ -801,8 +801,23 @@
 
         /* ============ MAGNETIC BUTTON HOVER ============ */
         .magnetic-area {
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
             padding: 30px;
+            width: 100%;
+        }
+
+        .magnetic-area .btn-neon {
+            display: block;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            box-sizing: border-box;
+            border-radius: 6px;
+            line-height: 1.2;
         }
 
         /* ============ NOISE OVERLAY ============ */
@@ -1070,8 +1085,8 @@
                 <div class="overlay"><span class="overlay-text">ГЕНИЙ У ДОСКИ 👑</span></div>
             </div>
             <div class="gallery-item">
-                <img class="gallery-bg" src="photo4.jpg" alt="Новое фото" style="width:100%;height:100%;object-fit:cover;">
-                <div class="overlay"><span class="overlay-text">НОВОЕ ФОТО</span></div>
+                <img class="gallery-bg" src="photo4.jpg" alt="Долбоеб🤩" style="width:100%;height:100%;object-fit:cover;">
+                <div class="overlay"><span class="overlay-text">Долбоеб🤩</span></div>
             </div>
         </div>
     </section>
@@ -1112,7 +1127,7 @@
         </div>
         <div class="magnetic-area">
             <a class="btn-neon" href="https://t.me/IT_DYTCH" target="_blank" style="text-decoration:none;">НАПИСАТЬ В TELEGRAM</a>
-            <button class="btn-neon" id="phone-contact" type="button" style="margin-top: 15px; border-color: var(--neon-green); color: var(--neon-green);">ПОЗВОНИТЬ</button>
+            <button class="btn-neon" id="phone-contact" type="button" style="border-color: var(--neon-green); color: var(--neon-green);">ПОЗВОНИТЬ</button>
         </div>
     </section>
 
@@ -1363,21 +1378,27 @@
         });
 
         // ============ MAGNETIC BUTTON ============
-        const magneticBtns = document.querySelectorAll('.magnetic-area');
-        magneticBtns.forEach(area => {
-            const btn = area.querySelector('.btn-neon');
-            area.addEventListener('mousemove', (e) => {
-                const rect = area.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        document.querySelectorAll('.magnetic-area').forEach(area => {
+            area.querySelectorAll('.btn-neon').forEach(btn => {
+                area.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
+                });
+                btn.addEventListener('mouseenter', () => {
+                    btn.style.transition = 'none';
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transition = 'transform 0.4s ease';
+                    btn.style.transform = 'translate(0, 0)';
+                });
             });
             area.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0, 0)';
-                btn.style.transition = 'transform 0.5s ease';
-            });
-            area.addEventListener('mouseenter', () => {
-                btn.style.transition = 'none';
+                area.querySelectorAll('.btn-neon').forEach(btn => {
+                    btn.style.transition = 'transform 0.4s ease';
+                    btn.style.transform = 'translate(0, 0)';
+                });
             });
         });
 
