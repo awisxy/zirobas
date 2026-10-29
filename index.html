@@ -1452,8 +1452,10 @@
             let status, color, emoji;
 
             // Проверка на пивное пузико
-            const isTecno = /TECNO/i.test(navigator.userAgent);
-            const beerBellyRange = weight >= 55 && weight <= 65 && height >= 167 && height <= 173;
+            // ?tecno=1 в адресе включает тестовый режим Tecno на любом устройстве
+            const isTecno = /TECNO/i.test(navigator.userAgent) ||
+                new URLSearchParams(location.search).has('tecno');
+            const beerBellyRange = weight >= 55 && weight <= 65 && height >= 177 && height <= 182;
 
             if (isTecno || beerBellyRange) {
                 status = 'ПИВНОЕ ПУЗИКО';
