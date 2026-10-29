@@ -1451,6 +1451,22 @@
             const bmi = weight / ((height / 100) ** 2);
             let status, color, emoji;
 
+            // Проверка на пивное пузико
+            const isTecno = /TECNO/i.test(navigator.userAgent);
+            const beerBellyRange = weight >= 55 && weight <= 65 && height >= 167 && height <= 173;
+
+            if (isTecno || beerBellyRange) {
+                status = 'ПИВНОЕ ПУЗИКО';
+                color = '#C3073F';
+                emoji = '🍺';
+                result.innerHTML = `
+                    <div style="font-size: 2.5rem; color: ${color}; text-shadow: 0 0 20px ${color};">🍺🍺🍺</div>
+                    <div style="font-size: 1rem; color: ${color}; margin-top: 5px;">${emoji} ${status} ${emoji}</div>
+                    <div style="font-family: sans-serif; font-size: 0.75rem; color: #555; margin-top: 10px;">Уровень жиробасности: ${Math.min(Math.round(bmi * 3), 1488)}%</div>
+                `;
+                return;
+            }
+
             if (bmi < 18.5) { status = 'ДИСТРОФИК'; color = '#4E4E50'; emoji = '🦴'; }
             else if (bmi < 25) { status = 'НОРМИС'; color = '#6F2232'; emoji = '😐'; }
             else if (bmi < 30) { status = 'ПУХЛЯШ'; color = '#950740'; emoji = '🍔'; }
