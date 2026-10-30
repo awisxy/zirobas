@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>СЕРЕГА ЖИРОБАС</title>
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('zh_theme') === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (e) { }
+        })();
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap');
 
@@ -109,7 +118,7 @@
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(195, 7, 63, 0.1);
             transform: translateY(-100%);
-            animation: slideDown 0.8s ease 2.5s forwards;
+            animation: slideDown 0.8s ease 0.2s forwards;
         }
 
         @keyframes slideDown {
@@ -201,10 +210,9 @@
             color: var(--crimson);
             text-transform: uppercase;
             opacity: 0;
-            animation: fadeInUp 1s ease 2.8s forwards;
+            animation: fadeInUp 1s ease 0.3s forwards;
             text-shadow: 0 0 20px rgba(195, 7, 63, 0.5);
         }
-
         .hero-title {
             font-family: 'Russo One', sans-serif;
             font-size: clamp(3rem, 10vw, 9rem);
@@ -226,7 +234,7 @@
         }
 
         .hero-title .line:nth-child(1) span {
-            animation-delay: 3s;
+            animation-delay: 0.15s;
             background: linear-gradient(90deg, #C3073F, #950740);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -235,7 +243,7 @@
         }
 
         .hero-title .line:nth-child(2) span {
-            animation-delay: 3.2s;
+            animation-delay: 0.3s;
             background: linear-gradient(90deg, #950740, #6F2232);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -253,7 +261,7 @@
             color: #555;
             margin-top: 30px;
             opacity: 0;
-            animation: fadeInUp 1s ease 3.5s forwards;
+            animation: fadeInUp 1s ease 0.55s forwards;
         }
 
         @keyframes fadeInUp {
@@ -269,7 +277,7 @@
             align-items: center;
             gap: 10px;
             opacity: 0;
-            animation: fadeInUp 1s ease 4s forwards;
+            animation: fadeInUp 1s ease 0.75s forwards;
         }
 
         .scroll-indicator span {
@@ -876,10 +884,333 @@
             color: #fff;
         }
 
+        /* ============ SUPPORT SECTION ============ */
+        .support {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .support-card {
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            border: 1px solid rgba(195, 7, 63, 0.25);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .support-desc {
+            font-family: sans-serif;
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .donate-btn {
+            display: inline-block;
+            padding: 16px 44px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--crimson), var(--crimson-dark));
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            box-shadow: 0 0 30px rgba(195, 7, 63, 0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .donate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 45px rgba(195, 7, 63, 0.55);
+        }
+
+        .progress-wrap {
+            margin: 35px auto 10px;
+            max-width: 560px;
+            text-align: left;
+        }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .progress-track {
+            height: 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.07);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--crimson), var(--crimson-dark));
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .supporters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .supporter {
+            padding: 8px 16px;
+            border: 1px solid rgba(195, 7, 63, 0.3);
+            border-radius: 999px;
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+
+        html[data-theme="light"] .support-card {
+            background: rgba(255, 255, 255, 0.7);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        html[data-theme="light"] .support-desc,
+        html[data-theme="light"] .progress-top {
+            color: #5b554c;
+        }
+
+        html[data-theme="light"] .supporter {
+            color: #3d3730;
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+
+        /* ============ AUTH MODAL ============ */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 100001;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-card {
+            width: 100%;
+            max-width: 420px;
+            padding: 32px;
+            border-radius: 18px;
+            background: #1f1f24;
+            border: 1px solid rgba(195, 7, 63, 0.3);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+        }
+
+        html[data-theme="light"] .modal-card {
+            background: #fff;
+        }
+
+        .modal-card h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+            color: var(--crimson);
+        }
+
+        .modal-note {
+            font-family: sans-serif;
+            font-size: 0.72rem;
+            color: #777;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .field {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .field label {
+            display: block;
+            font-family: sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 6px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--gray-mid);
+            background: rgba(255, 255, 255, 0.04);
+            color: inherit;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        html[data-theme="light"] .field input {
+            background: #f7f4ef;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-actions .icon-btn {
+            flex: 1;
+            padding: 12px;
+        }
+
+        .modal-error {
+            font-family: sans-serif;
+            font-size: 0.75rem;
+            color: var(--crimson);
+            min-height: 18px;
+            margin-top: 8px;
+        }
+
+        .auth-switch {
+            margin-top: 14px;
+            font-family: sans-serif;
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .auth-switch button {
+            background: none;
+            border: none;
+            color: var(--crimson);
+            cursor: pointer;
+            font: inherit;
+            text-decoration: underline;
+        }
+
+        /* ============ THEME TOGGLE ============ */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            padding: 8px 14px;
+            border: 1px solid var(--crimson);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--crimson);
+            font: 700 0.65rem 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .icon-btn:hover {
+            background: var(--crimson);
+            color: #fff;
+        }
+
+        /* ============ LIGHT THEME ============ */
+        html[data-theme="light"] {
+            --dark-bg: #f4efe6;
+            --gray-mid: #b8b0a3;
+            --crimson: #b00535;
+            --crimson-dark: #8a0429;
+            --burgundy: #6f2232;
+        }
+
+        html[data-theme="light"] body {
+            color: #1b1815;
+        }
+
+        html[data-theme="light"] .navbar {
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom-color: rgba(0, 0, 0, 0.08);
+        }
+
+        html[data-theme="light"] .nav-links a,
+        html[data-theme="light"] .hero-subtitle,
+        html[data-theme="light"] .scroll-indicator span,
+        html[data-theme="light"] .about-text p,
+        html[data-theme="light"] .skill-name,
+        html[data-theme="light"] .stat-label,
+        html[data-theme="light"] footer p {
+            color: #5b554c;
+        }
+
+        html[data-theme="light"] .section-heading,
+        html[data-theme="light"] .hero-title {
+            color: #17130f;
+        }
+
+        html[data-theme="light"] .reveal-text {
+            color: #d3cabc;
+        }
+
+        html[data-theme="light"] .reveal-text span.active {
+            color: #14110d;
+        }
+
+        html[data-theme="light"] .stat-card {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.07);
+        }
+
+        html[data-theme="light"] .stat-card .inner {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        html[data-theme="light"] .skill-track {
+            background: rgba(0, 0, 0, 0.09);
+        }
+
+        html[data-theme="light"] .marquee-text {
+            color: rgba(0, 0, 0, 0.04);
+            -webkit-text-stroke-color: rgba(0, 0, 0, 0.07);
+        }
+
+        html[data-theme="light"] .noise {
+            opacity: 0.02;
+        }
+
+        html[data-theme="light"] #bmi-weight,
+        html[data-theme="light"] #bmi-height {
+            background: #fff !important;
+            color: #1b1815 !important;
+            border-color: #cfc7ba !important;
+        }
+
+        html[data-theme="light"] .performance-toggle {
+            background: rgba(255, 255, 255, 0.92);
+        }
+
         /* ============ RESPONSIVE ============ */
         @media (max-width: 768px) {
             .navbar { padding: 15px 20px; }
             .nav-links { display: none; }
+            .nav-actions { gap: 6px; }
+            .nav-actions .icon-btn { padding: 6px 9px; font-size: 0.55rem; letter-spacing: 0; }
             section { padding: 80px 20px; }
             .about-content { grid-template-columns: 1fr; gap: 40px; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
@@ -919,8 +1250,13 @@
             <li><a href="#bmi">ИМТ</a></li>
             <li><a href="#gallery">Галерея</a></li>
             <li><a href="#game">Invoker</a></li>
+            <li><a href="#support">Поддержать</a></li>
             <li><a href="#contact">Контакт</a></li>
         </ul>
+        <div class="nav-actions">
+            <button class="icon-btn" id="theme-toggle" type="button">☀ СВЕТЛАЯ</button>
+            <button class="icon-btn" id="auth-open" type="button">ВОЙТИ</button>
+        </div>
     </nav>
 
     <button class="performance-toggle" id="performance-toggle" type="button" aria-pressed="false">⚡ РЕЖИМ ДЛЯ СЛАБЫХ УСТРОЙСТВ</button>
@@ -928,7 +1264,7 @@
     <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-bg-grid"></div>
-        <img src="logo.png" alt="Серега Жиробас" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--crimson); box-shadow: 0 0 40px rgba(195,7,63,0.4); margin-bottom: 20px; opacity: 0; animation: fadeInUp 1s ease 2.5s forwards; object-fit: cover; background: var(--dark-bg); mix-blend-mode: lighten;">
+        <img src="logo.png" alt="Серега Жиробас" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--crimson); box-shadow: 0 0 40px rgba(195,7,63,0.4); margin-bottom: 20px; opacity: 0; animation: fadeInUp 1s ease 0.1s forwards; object-fit: cover; background: var(--dark-bg); mix-blend-mode: lighten;">
         <div class="hero-subtitle-top">★ ЛЕГЕНДА ИНТЕРНЕТА ★</div>
         <h1 class="hero-title glitch-wrapper" data-text="СЕРЕГА ЖИРОБАС">
             <div class="line"><span>СЕРЕГА</span></div>
@@ -1118,6 +1454,28 @@
 
     <div class="glow-line"></div>
 
+    <!-- Support -->
+    <section class="support" id="support">
+        <div class="section-title">// ПОДДЕРЖКА</div>
+        <h2 class="section-heading">Поддержи <span style="color: var(--crimson);">вайб кодера</span></h2>
+        <div class="support-card">
+            <p class="support-desc">Сайт собран на чистом вайбе и без бюджета. Если зашло — закинь монетку, и твой ник попадёт в список легенд ниже.</p>
+            <a class="donate-btn" href="https://www.donationalerts.com/r/awisxy" target="_blank" rel="noopener">ЗАДОНАТИТЬ</a>
+            <div class="progress-wrap">
+                <div class="progress-top">
+                    <span>СОБРАНО НА ВАЙБ</span>
+                    <span id="support-progress-text">0 / 5000 ₽</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="support-progress-fill"></div>
+                </div>
+            </div>
+            <div class="supporters" id="supporters-list"></div>
+        </div>
+    </section>
+
+    <div class="glow-line"></div>
+
     <!-- Contact -->
     <section class="contact" id="contact">
         <div class="section-title">// КОНТАКТ</div>
@@ -1131,6 +1489,32 @@
         </div>
     </section>
 
+    <!-- Auth modal -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-card">
+            <h3 id="auth-title">Регистрация</h3>
+            <p class="modal-note">Аккаунт хранится только в этом браузере (localStorage). Это демо без сервера — не используй настоящий пароль.</p>
+            <div class="field" id="auth-name-field">
+                <label for="auth-name">Ник</label>
+                <input id="auth-name" type="text" autocomplete="nickname" placeholder="Серега228">
+            </div>
+            <div class="field">
+                <label for="auth-email">Email</label>
+                <input id="auth-email" type="email" autocomplete="email" placeholder="you@mail.ru">
+            </div>
+            <div class="field">
+                <label for="auth-pass">Пароль</label>
+                <input id="auth-pass" type="password" autocomplete="current-password" placeholder="••••••••">
+            </div>
+            <div class="modal-actions">
+                <button class="icon-btn" id="auth-submit" type="button">СОЗДАТЬ АККАУНТ</button>
+                <button class="icon-btn" id="auth-close" type="button">ЗАКРЫТЬ</button>
+            </div>
+            <div class="modal-error" id="auth-error"></div>
+            <div class="auth-switch">Уже есть аккаунт? <button type="button" id="auth-mode-switch">Войти</button></div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <p>© 2026 СЕРЕГА ЖИРОБАС. Сделано с <span class="heart">❤</span> и абсолютной базой.</p>
@@ -1138,11 +1522,16 @@
 
     <script>
         // ============ PRELOADER ============
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('preloader').classList.add('hidden');
-            }, 2000);
-        });
+        const preloaderEl = document.getElementById('preloader');
+        let preloaderHidden = false;
+        function hidePreloader() {
+            if (preloaderHidden) return;
+            preloaderHidden = true;
+            if (preloaderEl) preloaderEl.classList.add('hidden');
+        }
+        window.addEventListener('load', () => setTimeout(hidePreloader, 600));
+        // Fallback: never block the page if some resource hangs.
+        setTimeout(hidePreloader, 2500);
 
         // ============ PARTICLES ============
         const canvas = document.getElementById('particles-canvas');
@@ -1320,6 +1709,180 @@
         document.getElementById('phone-contact').addEventListener('click', () => {
             window.location.href = 'tel:+79955618062';
         });
+
+        // ============ THEME ============
+        const themeToggle = document.getElementById('theme-toggle');
+        function applyTheme(theme) {
+            const light = theme === 'light';
+            document.documentElement.setAttribute('data-theme', light ? 'light' : 'dark');
+            themeToggle.textContent = light ? '🌙 ТЁМНАЯ' : '☀ СВЕТЛАЯ';
+        }
+        applyTheme(localStorage.getItem('zh_theme') || 'dark');
+        themeToggle.addEventListener('click', () => {
+            const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            localStorage.setItem('zh_theme', next);
+            applyTheme(next);
+        });
+
+        // ============ SUPPORT / SUPPORTERS ============
+        const SUPPORT_GOAL = 5000;
+        const DEFAULT_SUPPORTERS = [
+            { name: 'awisxy', amount: 1000 },
+            { name: 'VibeCoder', amount: 500 },
+            { name: 'TecnoBoss', amount: 250 }
+        ];
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+
+        function getSupporters() {
+            try {
+                const saved = JSON.parse(localStorage.getItem('zh_supporters'));
+                return Array.isArray(saved) && saved.length ? saved : DEFAULT_SUPPORTERS.slice();
+            } catch (e) {
+                return DEFAULT_SUPPORTERS.slice();
+            }
+        }
+
+        function renderSupport() {
+            const list = document.getElementById('supporters-list');
+            const supporters = getSupporters();
+            const total = supporters.reduce((sum, s) => sum + (Number(s.amount) || 0), 0);
+            document.getElementById('support-progress-text').textContent = total + ' / ' + SUPPORT_GOAL + ' ₽';
+            document.getElementById('support-progress-fill').style.width = Math.min(100, (total / SUPPORT_GOAL) * 100) + '%';
+            list.innerHTML = supporters.length
+                ? supporters.map(s => '<span class="supporter">🍺 ' + escapeHtml(s.name) + ' — ' + (Number(s.amount) || 0) + ' ₽</span>').join('')
+                : '<span class="supporter">Пока никого. Будь первым!</span>';
+        }
+        renderSupport();
+
+        // ============ AUTH (local demo) ============
+        const authModal = document.getElementById('auth-modal');
+        const authTitle = document.getElementById('auth-title');
+        const authNameField = document.getElementById('auth-name-field');
+        const authSubmit = document.getElementById('auth-submit');
+        const authError = document.getElementById('auth-error');
+        const authOpen = document.getElementById('auth-open');
+        const authModeSwitch = document.getElementById('auth-mode-switch');
+        const authSwitchWrap = document.querySelector('.auth-switch');
+        let authMode = 'register';
+
+        function getUsers() {
+            try { return JSON.parse(localStorage.getItem('zh_users')) || []; } catch (e) { return []; }
+        }
+        function saveUsers(users) { localStorage.setItem('zh_users', JSON.stringify(users)); }
+
+        async function hashPass(pass) {
+            const raw = 'zh_salt::' + pass;
+            try {
+                if (window.crypto && crypto.subtle) {
+                    const data = new TextEncoder().encode(raw);
+                    const buf = await crypto.subtle.digest('SHA-256', data);
+                    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+                }
+            } catch (e) { /* file:// fallback below */ }
+            let h1 = 0x811c9dc5, h2 = 0x1000193;
+            for (let i = 0; i < raw.length; i++) {
+                h1 = Math.imul(h1 ^ raw.charCodeAt(i), 16777619) >>> 0;
+                h2 = (h2 + raw.charCodeAt(i) * (i + 7)) >>> 0;
+            }
+            return 'fb' + h1.toString(16) + h2.toString(16);
+        }
+
+        function setAuthMode(mode) {
+            authMode = mode;
+            const reg = mode === 'register';
+            authTitle.textContent = reg ? 'Регистрация' : 'Вход';
+            authNameField.style.display = reg ? 'block' : 'none';
+            authSubmit.textContent = reg ? 'СОЗДАТЬ АККАУНТ' : 'ВОЙТИ';
+            authModeSwitch.textContent = reg ? 'Войти' : 'Регистрация';
+            authSwitchWrap.firstChild.textContent = reg ? 'Уже есть аккаунт? ' : 'Нет аккаунта? ';
+            authError.textContent = '';
+        }
+
+        function openAuth() {
+            authModal.classList.add('open');
+            setAuthMode(getUsers().length ? 'login' : 'register');
+        }
+        function closeAuth() { authModal.classList.remove('open'); }
+
+        function updateAuthUI() {
+            const session = localStorage.getItem('zh_session');
+            authOpen.textContent = session ? session : 'ВОЙТИ';
+            authOpen.dataset.logged = session ? '1' : '0';
+            renderMarkSupport();
+        }
+
+        authOpen.addEventListener('click', () => {
+            if (localStorage.getItem('zh_session')) {
+                if (confirm('Выйти из аккаунта?')) {
+                    localStorage.removeItem('zh_session');
+                    updateAuthUI();
+                }
+            } else {
+                openAuth();
+            }
+        });
+
+        document.getElementById('auth-close').addEventListener('click', closeAuth);
+        authModal.addEventListener('click', (e) => { if (e.target === authModal) closeAuth(); });
+        authModeSwitch.addEventListener('click', () => setAuthMode(authMode === 'register' ? 'login' : 'register'));
+
+        authSubmit.addEventListener('click', async () => {
+            const name = document.getElementById('auth-name').value.trim();
+            const email = document.getElementById('auth-email').value.trim().toLowerCase();
+            const pass = document.getElementById('auth-pass').value;
+            authError.textContent = '';
+
+            if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { authError.textContent = 'Введи корректный email.'; return; }
+            if (pass.length < 6) { authError.textContent = 'Пароль минимум 6 символов.'; return; }
+
+            const users = getUsers();
+            if (authMode === 'register') {
+                if (name.length < 2) { authError.textContent = 'Ник минимум 2 символа.'; return; }
+                if (users.some(u => u.email === email)) { authError.textContent = 'Этот email уже зарегистрирован.'; return; }
+                users.push({ name: name, email: email, pass: await hashPass(pass) });
+                saveUsers(users);
+                localStorage.setItem('zh_session', name);
+                closeAuth();
+                updateAuthUI();
+            } else {
+                const user = users.find(u => u.email === email);
+                if (!user) { authError.textContent = 'Аккаунт не найден.'; return; }
+                if (user.pass !== await hashPass(pass)) { authError.textContent = 'Неверный пароль.'; return; }
+                localStorage.setItem('zh_session', user.name);
+                closeAuth();
+                updateAuthUI();
+            }
+        });
+
+        function renderMarkSupport() {
+            let btn = document.getElementById('mark-support');
+            const session = localStorage.getItem('zh_session');
+            if (!session) { if (btn) btn.remove(); return; }
+            if (!btn) {
+                btn = document.createElement('button');
+                btn.id = 'mark-support';
+                btn.type = 'button';
+                btn.className = 'icon-btn';
+                btn.style.marginTop = '18px';
+                document.querySelector('.support-card').appendChild(btn);
+            }
+            btn.textContent = 'Я ПОДДЕРЖАЛ — ОТМЕТИТЬСЯ';
+            btn.onclick = () => {
+                const amount = parseInt(prompt('Сколько закинул (₽)?', '100'), 10);
+                if (!amount || amount <= 0) return;
+                const supporters = getSupporters();
+                const existing = supporters.find(s => s.name === session);
+                if (existing) existing.amount = (Number(existing.amount) || 0) + amount;
+                else supporters.push({ name: session, amount: amount });
+                localStorage.setItem('zh_supporters', JSON.stringify(supporters));
+                renderSupport();
+            };
+        }
+
+        updateAuthUI();
 
         // ============ NUMBER ANIMATION ============
         function animateNumber(el, target) {
